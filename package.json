@@ -1,0 +1,33 @@
+{
+  "name": "@bacons/react-views",
+  "version": "1.0.0",
+  "description": "Basically if React Native and React Native for web had a baby and raised it to believe in TypeScript",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evanbacon/react-views.git"
+  },
+  "peerDependencies": {
+    "react-native": "*"
+  },
+  "keywords": [
+    "react-native",
+    "react-native-web",
+    "typescript"
+  ],
+  "author": "Evan Bacon",
+  "license": "MIT",
+  "devDependencies": {
+    "expo-module-scripts": "^2.0.0",
+    "react-native": "0.68.2"
+  }
+}
