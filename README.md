@@ -10,7 +10,7 @@ yarn add @bacons/react-views
 
 ## Usage
 
-Drop-in replacement for View, Text, and Image that works with react-native-web and react-native. Adds the `:hover` style prop for web (does not support pre-rendering).
+Drop-in replacement for View, Text, and Image that works with react-native-web and react-native. Adds the `hoverStyle` style prop for web (does not support pre-rendering).
 
 ```tsx
 import { View, Image, Text } from "@bacons/react-views";
@@ -23,9 +23,9 @@ function App() {
         style={{
           // These styles do nothing on native.
           transitionDuration: "200ms",
-          ":hover": {
-            backgroundColor: "darkturquoise",
-          },
+        }}
+        hoverStyle={{
+          backgroundColor: "darkturquoise",
         }}
         // A custom prop that centers contents, because I'm lazy.
         center

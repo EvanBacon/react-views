@@ -119,8 +119,6 @@ export interface WebViewStyle {
   /** @platform web */
   willChange?: string;
 
-  /** @platform web */
-  ':hover'?: ViewStyle;
 }
 
 export type ViewStyle = NativeViewStyle & WebViewStyle;
@@ -142,6 +140,7 @@ export type WebViewProps = {
 
   /** Float content to the center. `{ justifyContent: 'center', alignItems: 'center' }` */
   center?: boolean;
+  hoverStyle?: ViewStyle;
 };
 
 export type ViewProps = WebViewProps & Omit<NativeViewProps, 'style' | 'accessibilityRole'>;

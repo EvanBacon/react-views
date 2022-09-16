@@ -56,7 +56,7 @@ const WEB_STYLES = [
   "willChange",
 
   // Custom styles
-  ":hover",
+  //   ":hover",
   //   ":active",
   //   ":focus",
 ];

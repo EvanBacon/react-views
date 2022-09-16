@@ -10,11 +10,9 @@ type NativeImageProps = ComponentProps<typeof NativeImage> & ClassAttributes<typ
 
 export interface WebImageStyle {
     opacity?: number;
-    /** @platform web */
-    ":hover"?: ImageStyle;
 }
 
-export type ImageStyle = NativeImageStyle & WebImageStyle & Omit<WebViewStyle, ':hover'>;
+export type ImageStyle = NativeImageStyle & WebImageStyle & WebViewStyle;
 
 export type WebImageProps = {
     style?: StyleProp<ImageStyle>;
@@ -25,6 +23,8 @@ export type WebImageProps = {
      * @platform web
      */
     draggable?: boolean;
+    /** @platform web */
+    hoverStyle?: StyleProp<ImageStyle>;
 };
 
 export type ImageProps = Omit<NativeImageProps, 'style'> & WebImageProps;

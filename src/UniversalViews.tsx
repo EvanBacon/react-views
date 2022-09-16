@@ -11,7 +11,7 @@ import { ViewProps } from './View';
 
 function createPsuedoClassView<TView, TViewProps extends { style?: any }>(
     View: TView,
-    { style, center, ...props }: TViewProps & { center?: boolean },
+    { style, hoverStyle, center, ...props }: TViewProps & { center?: boolean, hoverStyle?: any },
     forwardedRef: React.Ref<TView>,
 ) {
 
@@ -31,9 +31,17 @@ function createPsuedoClassView<TView, TViewProps extends { style?: any }>(
     const setRef = useMergeRefs(forwardedRef, hostRef);
     const hover = useHover(hostRef)
 
+    // if (View === Text && props.href && Platform.OS !== 'web') {
+    //     const originalOnPress = props.onPress?.bind(props);
+    //     props.onPress = (...args) => {
+    //         originalOnPress?.(...args);
+    //         Linking.openURL(props.href);
+    //     }
+    // }
+
     return (
         // @ts-expect-error
-        <View ref={setRef} style={[finalStyle, hover && style[':hover']]} {...props} />
+        <View ref={setRef} style={[finalStyle, hover && hoverStyle]} {...props} />
     );
 }
 

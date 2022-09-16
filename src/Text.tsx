@@ -30,19 +30,21 @@ export interface WebTextStyle {
   unicodeBidi?: string;
   /** @platform web */
   wordWrap?: string;
-  /** @platform web */
-  ':hover'?: TextStyle;
 }
 
-export type TextStyle = Omit<NativeTextStyle, 'fontSize' | 'lineHeight'> & WebTextStyle & Omit<WebViewStyle, ':hover'>;
+export type TextStyle = Omit<NativeTextStyle, 'fontSize' | 'lineHeight'> & WebTextStyle & WebViewStyle;
 
 export type WebTextProps = {
   style?: StyleProp<TextStyle>;
   /** @platform web */
   tabIndex?: number;
+  /** @platform web */
+  accessibilityLevel?: number;
   accessibilityRole?: 'listitem' | 'heading' | AccessibilityRole;
   /** @platform web */
   href?: string;
+  /** @platform web */
+  hoverStyle?: StyleProp<TextStyle>;
 };
 
 export type TextProps = Omit<NativeTextProps, 'style' | 'accessibilityRole'> & WebTextProps;
