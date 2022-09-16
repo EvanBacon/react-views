@@ -13,7 +13,7 @@ yarn add @bacons/react-views
 Drop-in replacement for View, Text, and Image that works with react-native-web and react-native. Adds the `hoverStyle` style prop for web (does not support pre-rendering).
 
 ```tsx
-import { View, Image, Text } from "@bacons/react-views";
+import { View, Image, Text, StyleSheet, Pressable } from "@bacons/react-views";
 
 function App() {
   return (
@@ -42,3 +42,5 @@ function App() {
 ```
 
 Mostly this adds types so there shouldn't be too much bloat. The styles are all evaluated on native platforms though, this doesn't have much overhead since `StyleSheet` API doesn't do anything on native besides adding typed props.
+
+> `StyleSheet` and `Pressable` have adjusted types only.
