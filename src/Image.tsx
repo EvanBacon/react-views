@@ -12,7 +12,7 @@ export interface WebImageStyle {
     opacity?: number;
 }
 
-export type ImageStyle = NativeImageStyle & WebImageStyle & WebViewStyle;
+export type ImageStyle = Omit<NativeImageStyle, 'position'> & WebImageStyle & WebViewStyle;
 
 export type WebImageProps = {
     style?: StyleProp<ImageStyle>;

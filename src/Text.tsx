@@ -32,7 +32,7 @@ export interface WebTextStyle {
   wordWrap?: string;
 }
 
-export type TextStyle = Omit<NativeTextStyle, 'fontSize' | 'lineHeight'> & WebTextStyle & WebViewStyle;
+export type TextStyle = Omit<NativeTextStyle, 'position' | 'fontSize' | 'lineHeight'> & WebTextStyle & WebViewStyle;
 
 export type WebTextProps = {
   style?: StyleProp<TextStyle>;
