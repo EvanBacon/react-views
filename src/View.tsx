@@ -1,6 +1,8 @@
-import { ClassAttributes, ComponentProps, ComponentType } from 'react';
+import React, { ClassAttributes, ComponentProps, ComponentType } from 'react';
 import {
   StyleProp,
+  Text,
+  Platform,
   View as NativeView,
   AccessibilityRole,
   ViewStyle as NativeViewStyle,
@@ -146,6 +148,29 @@ export type WebViewProps = {
 
 export type ViewProps = WebViewProps & Omit<NativeViewProps, 'style' | 'accessibilityRole'>;
 
-const View = NativeView as ComponentType<ViewProps>;
+let View = NativeView as ComponentType<ViewProps>;
+
+if (process.env.NODE_ENV !== 'production') {
+  // Add better errors and warnings in development builds.
+  View = function View(props: ViewProps) {
+    const children = React.useMemo(() => {
+      const children: any[] = [];
+      React.Children.forEach(props.children, (child) => {
+        if (typeof child === 'string') {
+          // Wrap text in a Text component.
+          console.warn(`Invalid raw text as a child of View: "${child}". Wrap it with a Text component or remove it.`);
+          children.push(<Text style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, backgroundColor: 'firebrick', color: 'white', fontSize: 24 }}>Unwrapped text: "{<Text style={{ fontWeight: 'bold' }}>{child}</Text>}"</Text>)
+          return;
+        } else if (typeof child.type === 'string' && Platform.OS !== 'web') {
+          // Disallow react-dom elements on native.
+          throw new Error(`Using unsupported React DOM element "<${child.type} />" in React Native. Please remove this child from the View.`);
+        }
+        children.push(child);
+      });
+      return children;
+    }, [props.children]);
+    return <NativeView {...props} children={children} />
+  }
+}
 
 export default View;
