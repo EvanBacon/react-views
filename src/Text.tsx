@@ -45,6 +45,19 @@ export type WebTextProps = {
   href?: string;
   /** @platform web */
   hoverStyle?: StyleProp<TextStyle>;
+  /** @deprecated use the prop `hrefAttrs={{ target: '...' }}` instead. */
+  target?: string;
+  /** @platform web */
+  hrefAttrs?: {
+    /** @platform web */
+    target?: string;
+    /** @platform web */
+    rel?: string;
+    /** @platform web */
+    download?: boolean | string;
+  };
+  /** @platform web */
+  lang?: string,
 };
 
 export type TextProps = Omit<NativeTextProps, 'style' | 'accessibilityRole'> & WebTextProps;

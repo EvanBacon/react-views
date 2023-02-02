@@ -61,6 +61,29 @@ const WEB_STYLES = [
   //   ":focus",
 ];
 
+StyleSheet.setStyleAttributePreprocessor("aspectRatio", (value) => {
+  if (typeof value === "string") {
+    // Match `1 / 2.0`, `2.0/   4`
+    const trimmed = value.trim();
+    // Single number as a string
+
+    if (!trimmed.match(/^(\d+(?:\.\d+)?)$/)) {
+      const components = trimmed.match(
+        /^(\d+(?:\.\d+)?)(?:\s+)?\/(?:\s+)?(\d+(?:\.\d+)?$)$/
+      );
+      if (components && components[1] && components[2]) {
+        const first = parseFloat(components[1]);
+        const second = parseFloat(components[2]);
+        return first / second;
+      } else {
+        console.warn(`Unsupported aspectRatio: '${value}'`);
+        return undefined;
+      }
+    }
+  }
+  return value;
+});
+
 export function filterStyles(styleProp = {}) {
   const style = StyleSheet.flatten(styleProp);
 
@@ -98,7 +121,8 @@ function processNativeStyles(style) {
   }
   if (style.visibility) {
     if (style.visibility === "hidden") {
-      style.display = "none";
+      // style.display = "none";
+      style.opacity = 0;
     }
     delete style.visibility;
   }

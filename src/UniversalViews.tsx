@@ -1,17 +1,14 @@
 import React, { forwardRef, useMemo, useRef } from "react";
 import {
     StyleSheet,
-    View as UpstreamView,
-    Text as UpstreamText,
-    Image as UpstreamImage,
 } from "react-native";
 
 import { filterStyles } from "./filterStyles";
-import { ImageProps } from "./Image";
+import UpstreamImage, { ImageProps } from "./Image";
 import { useMergeRefs } from "./mergeRefs";
-import { TextProps } from "./Text";
+import UpstreamText, { TextProps } from "./Text";
 import { useHover } from "./useEvents";
-import { ViewProps } from "./View";
+import UpstreamView, { ViewProps } from "./View";
 
 function createPsuedoClassView<TView, TViewProps extends { style?: any }>(
     View: TView,
